@@ -1,0 +1,27 @@
+# Research & private content
+research/
+
+# Environment & secrets
+.env
+.env.local
+*.local
+
+# Dependencies
+node_modules/
+vendor/
+__pycache__/
+*.egg-info/
+.venv/
+venv/
+
+# OS & IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+dist/
+build/
+*.log
