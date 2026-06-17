@@ -296,6 +296,28 @@ When a project moves from `experiments/` to `active/`:
 3. If the project has found PMF and is entering growth mode, update the **Project Phase** from Discovery to Growth.
 4. Ensure the project's git remote is configured for the target repository.
 
+## Project Archiving
+
+When a project is stopped or killed, move it from `experiments/` or `active/` to `archive/`:
+
+```bash
+mv projects/experiments/<name> projects/archive/<name>
+```
+
+Then update the project's `README.md` and `AGENTS.md`:
+
+1. **`README.md`**: Fill it out as usual (Overview, Problem, Who it's for, Getting Started, Project Structure). Then add a **Product Learning** section directly under **Project Structure** containing:
+   - **Idea summary**: What the project was, in simple terms, what problem it solved, and who it was for.
+   - **Research/validation summary**: What was tested and how.
+   - **Validation outcome**: The decision (kill/pivot/keep) and a concise summary of the key learnings.
+   - **Recommendations**: Alternative directions or next steps.
+
+2. **`AGENTS.md`**: Update the status to "Archived" and note the date and decision.
+
+3. Commit the final state in the project's own repository.
+
+The detailed research and raw notes should stay in the project's `research/` folder (gitignored by default).
+
 ---
 
 # Skills Maintenance Workflow

@@ -5,7 +5,6 @@ A personal workspace for turning ideas into products — or deciding not to.
 ## What this is
 
 This folder is a structured home for product experiments. It helps you:
-
 - Start new ideas in a consistent way
 - Follow a discovery process before building
 - Reuse shared guides and skills across projects
@@ -15,7 +14,6 @@ This folder is a structured home for product experiments. It helps you:
 ## Who this is for
 
 You, if you want to:
-
 - Test product ideas without over-engineering
 - Document why an idea was killed or pivoted
 - Keep a library of reusable product and engineering guides
@@ -93,13 +91,11 @@ These skills are reference material. Agents use them to stay consistent across p
    - Or just let the idea sit until you have more clarity.
 
 ## Git setup
-
 - The workspace root is one git repository. It tracks the shared structure, skills, and templates.
 - Each project is its own git repository. This keeps projects portable.
 - The root workspace ignores individual project contents so they don't get mixed together.
 
 ## Workspace rules
-
 - **Ask first, assume never.** Don't guess requirements.
 - **Start small.** Build the smallest testable version.
 - **Document learnings.** Especially when something fails.
@@ -107,5 +103,4 @@ These skills are reference material. Agents use them to stay consistent across p
 - **Research is private by default.** The `research/` folder in each project is gitignored.
 
 ## License
-
 Workspace structure and shared skills are intended to be lightweight and reusable. Individual projects may have their own licenses.
