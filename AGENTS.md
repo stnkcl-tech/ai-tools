@@ -34,6 +34,7 @@ These rules apply to all agents operating anywhere in this workspace unless over
 7. **Preserve existing logic**. When refactoring, do not change behavior unless explicitly requested.
 8. **Follow existing style**. Match the coding style, naming conventions, and formatting of the codebase you are editing.
 9. **Document your work**. Follow the **core-documentation** skill for all written communication — code comments, READMEs, PR descriptions, and project docs.
+10. **Gatekeep implementation**. Do not start writing code, building, shipping, or implementing until the user explicitly says "go build this," "start building," "implement this," or an equivalent explicit go-ahead. Planning, discovery, design, analysis, documentation, and research are welcome without this signal; implementation is not.
 
 ## Multimodal Input Discipline
 

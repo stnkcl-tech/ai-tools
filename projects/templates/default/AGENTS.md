@@ -72,5 +72,6 @@ Root skills are available at `../../../.agents/skills/`.
 - Before making design, product, or engineering decisions, check `references/` for locked decisions.
 - If a decision is not yet in `references/`, treat it as draft and confirm with the user before locking it.
 - When a decision is finalized, move or copy it to `references/` for agents to consult.
+- **Gatekeep implementation**: Do not start writing code, building, shipping, or implementing until the user explicitly says "go build this," "start building," "implement this," or an equivalent explicit go-ahead.
 
 <!-- Add any rules unique to this project below -->
