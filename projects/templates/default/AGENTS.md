@@ -55,6 +55,7 @@ Root skills are available at `../../../.agents/skills/`.
 ├── AGENTS.md          # This file
 ├── README.md          # Public project description
 ├── .gitignore         # Git ignore rules
+├── references/        # Locked decisions & reference materials (folder committed, contents gitignored)
 ├── research/          # Research notes, drafts, data (gitignored by default)
 └── src/               # Source code (committed)
 ```
@@ -63,8 +64,13 @@ Root skills are available at `../../../.agents/skills/`.
 
 - This project is an independent git repository.
 - `research/` is gitignored by default. Do not commit it unless the user explicitly says otherwise.
+- `references/` contents are gitignored by default, but the folder structure is committed. Only commit contents if the user explicitly says otherwise.
 - Only software code and public documentation should be committed for GitHub publication.
 
 ## Project-Specific Conventions
+
+- Before making design, product, or engineering decisions, check `references/` for locked decisions.
+- If a decision is not yet in `references/`, treat it as draft and confirm with the user before locking it.
+- When a decision is finalized, move or copy it to `references/` for agents to consult.
 
 <!-- Add any rules unique to this project below -->

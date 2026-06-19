@@ -1,6 +1,10 @@
 # Research & private content
 research/
 
+# References: folder structure committed, contents ignored
+references/*
+!references/.gitkeep
+
 # Environment & secrets
 .env
 .env.local

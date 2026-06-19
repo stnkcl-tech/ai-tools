@@ -18,7 +18,15 @@
 
 ## Project Structure
 
-<!-- Overview of the codebase layout -->
+```
+.
+├── AGENTS.md          # Project-specific agent instructions
+├── README.md          # Public project description
+├── .gitignore         # Git ignore rules
+├── references/        # Locked decisions & reference materials (folder committed, contents gitignored)
+├── research/          # Research notes, drafts, data (gitignored by default)
+└── src/               # Source code (committed)
+```
 
 ## Product Learning
 
