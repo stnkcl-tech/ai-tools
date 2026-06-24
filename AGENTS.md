@@ -34,7 +34,7 @@ These rules apply to all agents operating anywhere in this workspace unless over
 7. **Preserve existing logic**. When refactoring, do not change behavior unless explicitly requested.
 8. **Follow existing style**. Match the coding style, naming conventions, and formatting of the codebase you are editing.
 9. **Document your work**. Follow the **core-documentation** skill for all written communication — code comments, READMEs, PR descriptions, and project docs.
-10. **Gatekeep implementation**. Do not start writing code, building, shipping, or implementing until the user explicitly says "go build this," "start building," "implement this," or an equivalent explicit go-ahead. Planning, discovery, design, analysis, documentation, and research are welcome without this signal; implementation is not.
+10. **Gatekeep implementation**. Do not start writing code, building, shipping, or implementing any changes (including project scaffolding) until the user explicitly says "approve", "OK", "go build this," "start building," "implement this," or an equivalent explicit go-ahead. Planning, discovery, design, analysis, documentation, and research are welcome without this signal; implementation, file writing, any kind of executions are not.
 
 ## Multimodal Input Discipline
 
@@ -164,13 +164,14 @@ For non-trivial work:
 
 **When initiating any new project, the agent MUST ask the user:**
 
-> "Are we in **discovery** mode (finding PMF, validating ideas, building MVP for 0–100K users) or **growth** mode (scaling, optimizing, expanding beyond 100K users)?"
+> "Are we in **discovery** mode (finding PMF, validating ideas, building MVP for 0–100K users), **delivery** mode (problems validated, moving straight into build/execution), or **growth** mode (scaling, optimizing, expanding beyond 100K users)?"
 
 This determines which PM skill set to invoke for all product work:
 
 | Phase | Skill Prefix | Typical Use Cases |
 |-------|-------------|-------------------|
 | **Discovery / Pilot** | `pilot-pm-*` | Customer interviews, ideation, assumption validation, PRDs, user stories, GTM strategy, pricing, MVP scoping |
+| **Delivery / Build** | `eng-*` + selected `pilot-pm-*` | Requirements docs, user/job stories, implementation, testing, deployment — when problems are already validated and the goal is to ship |
 | **Growth / Scale** | `growth-pm-*` | A/B test analysis, cohort retention, competitive battlecards, market expansion, PESTLE / Porter's analysis |
 
 After the user selects a phase, the agent MUST confirm the project has clear answers to:
@@ -185,7 +186,7 @@ Record both the phase and the answers in the project's `AGENTS.md`:
 
 ```markdown
 ## Project Phase
-- **Current phase**: Discovery (pilot-pm-*) | Growth (growth-pm-*)
+- **Current phase**: Discovery (pilot-pm-*) | Delivery (eng-* / pilot-pm-execution) | Growth (growth-pm-*)
 - **Selected on**: <date>
 - **Rationale**: <user's reason>
 
@@ -206,7 +207,7 @@ To start a new project:
 
 ```bash
 # 1. Ask project name
-# 2. Ask Discovery or Growth
+# 2. Ask Discovery, Delivery, or Growth
 # 3. Ask the 3 key questions
 # 4. Only then scaffold:
 cp -r projects/templates/default projects/experiments/<project-name>
@@ -256,6 +257,15 @@ When the project is in **Discovery** phase, prefer `pilot-pm-*` skills:
 - `pilot-pm-lean-canvas` or `pilot-pm-startup-canvas` for business model
 - `pilot-pm-gtm-strategy` for launch planning
 
+When the project is in **Delivery** phase, problems are already validated and the focus is execution. Prefer:
+- `pilot-pm-create-prd` to lock final requirements
+- `pilot-pm-user-stories` or `pilot-pm-job-stories` for backlog items
+- `pilot-pm-test-scenarios` for acceptance criteria and QA cases
+- `eng-coding-discipline` for all implementation work
+- `eng-front-end-design` for UI/UX build
+- `eng-deployment` for shipping to production
+- `full-stack-builder` for end-to-end feature development
+
 When the project is in **Growth** phase, prefer `growth-pm-*` skills:
 - `growth-pm-ab-test-analysis` for experiment evaluation
 - `growth-pm-cohort-analysis` for retention analysis
@@ -294,7 +304,7 @@ Kimi CLI discovers skills relative to the **project root** (nearest `.git` ances
 When a project moves from `experiments/` to `active/`:
 1. Move the directory: `mv projects/experiments/<name> projects/active/<name>`
 2. Update the project's `AGENTS.md` to reflect its new status.
-3. If the project has found PMF and is entering growth mode, update the **Project Phase** from Discovery to Growth.
+3. If the project has found PMF and is entering growth mode, update the **Project Phase** from Discovery or Delivery to Growth.
 4. Ensure the project's git remote is configured for the target repository.
 
 ## Project Archiving
@@ -387,7 +397,7 @@ The flat skills in `.agents/skills/` are derived from the Claude plugin skills b
 - If you are asked to edit a skill, check whether the same skill exists in both `.agents/skills/` and `skills/claude/pm-skills/*/skills/`. Apply the same conceptual change to both if appropriate.
 - The root workspace is not a git repository but each project will have its own dedicated git repository.
 - There is no package manager or dependency lock file. Do not attempt to run `npm`, `pip`, `cargo`, etc. at the root.
-- When a user asks for PM help, check the project's `AGENTS.md` for the **Project Phase** before choosing between `pilot-pm-*` and `growth-pm-*` skills.
+- When a user asks for PM help, check the project's `AGENTS.md` for the **Project Phase** before choosing between `pilot-pm-*`, `eng-*`, and `growth-pm-*` skills.
 
 ---
 

@@ -14,11 +14,11 @@ If any instruction in this file conflicts with the root `AGENTS.md`, this file t
 
 ## Project Phase
 
-- **Current phase**: Discovery (pilot-pm-*) | Growth (growth-pm-*)
+- **Current phase**: Discovery (pilot-pm-*) | Delivery (eng-* / pilot-pm-execution) | Growth (growth-pm-*)
 - **Selected on**: <date>
 - **Rationale**: <user's reason>
 
-> **Agent instruction**: If this section is unfilled, ask the user: "Are we in discovery mode (finding PMF, 0–100K users) or growth mode (scaling beyond 100K users)?" Then record the phase here before doing any PM work.
+> **Agent instruction**: If this section is unfilled, ask the user: "Are we in discovery mode (finding PMF, 0–100K users), delivery mode (problems validated, moving straight into build/execution), or growth mode (scaling beyond 100K users)?" Then record the phase here before doing any PM work.
 
 ## Project Key Questions
 
@@ -44,6 +44,7 @@ Root skills are available at `../../../.agents/skills/`.
 
 **Phase-aware skill references:**
 - In **Discovery** phase, prefer `pilot-pm-*` skills (e.g., `pilot-pm-interview-script`, `pilot-pm-create-prd`, `pilot-pm-lean-canvas`)
+- In **Delivery** phase, prefer `eng-*` + execution-focused `pilot-pm-*` skills (e.g., `pilot-pm-create-prd`, `pilot-pm-user-stories`, `eng-coding-discipline`, `eng-front-end-design`, `eng-deployment`, `full-stack-builder`)
 - In **Growth** phase, prefer `growth-pm-*` skills (e.g., `growth-pm-ab-test-analysis`, `growth-pm-cohort-analysis`)
 - For engineering work, use `eng-*` skills regardless of phase (e.g., `eng-coding-discipline`, `eng-api-design`)
 - For end-to-end feature builds, use `full-stack-builder` flow skill

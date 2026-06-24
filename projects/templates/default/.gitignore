@@ -1,6 +1,9 @@
 # Research & private content
 research/
 
+#Bugs
+bugs/
+
 # References: folder structure committed, contents ignored
 references/*
 !references/.gitkeep
