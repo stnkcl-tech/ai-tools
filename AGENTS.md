@@ -10,8 +10,10 @@ The workspace contains three main asset groups:
    - **56 `pilot-pm-*` skills** — Product management for discovery, validation, and building toward PMF (0–100K users)
    - **9 `growth-pm-*` skills** — Product management for scaling, optimization, and expansion (100K+ users)
    - **21 `eng-*` skills** — Engineering practices from coding discipline to deployment, monitoring, and performance
+   - **2 `prd-*` skills** — Product design, copy, and other pre-engineering product outputs
    - **1 `core-*` skill** — Workspace-wide documentation standards
    - **1 `full-stack-builder` flow** — Orchestrated end-to-end feature development from PRD to shipped code
+   - **3 additional product/orchestration skills** — `new-project`, `product-discovery`, `prototype-builder`
 
 2. **`skills/claude/pm-skills/`** — A full git clone of the open-source `phuryn/pm-skills` repository (https://github.com/phuryn/pm-skills). This is a Claude Code plugin marketplace that packages the PM skills into 8 installable plugins, plus 36 slash-commands that chain skills into end-to-end workflows. This folder is kept as the upstream source of truth. Changes here are synced into `.agents/skills/` via a manual process documented in the **Skills Maintenance Workflow** section below.
 
@@ -111,7 +113,7 @@ For non-trivial work:
 ```
 .
 ├── .agents/
-│   └── skills/                          # 88 flat skill directories (agent-agnostic)
+│   └── skills/                          # 93 flat skill directories (agent-agnostic)
 │       ├── pilot-pm-create-prd/SKILL.md
 │       ├── pilot-pm-user-stories/SKILL.md
 │       ├── eng-coding-discipline/SKILL.md
@@ -171,8 +173,10 @@ This determines which PM skill set to invoke for all product work:
 | Phase | Skill Prefix | Typical Use Cases |
 |-------|-------------|-------------------|
 | **Discovery / Pilot** | `pilot-pm-*` | Customer interviews, ideation, assumption validation, PRDs, user stories, GTM strategy, pricing, MVP scoping |
-| **Delivery / Build** | `eng-*` + selected `pilot-pm-*` | Requirements docs, user/job stories, implementation, testing, deployment — when problems are already validated and the goal is to ship |
+| **Delivery / Build** | `eng-*` + selected `pilot-pm-*` + `prd-*` | Requirements docs, user/job stories, product design, copy, implementation, testing, deployment — when problems are already validated and the goal is to ship |
 | **Growth / Scale** | `growth-pm-*` | A/B test analysis, cohort retention, competitive battlecards, market expansion, PESTLE / Porter's analysis |
+
+`prd-*` skills are pre-engineering product skills. Use them after discovery requirements are set and before engineering implementation begins.
 
 After the user selects a phase, the agent MUST confirm the project has clear answers to:
 
@@ -186,7 +190,7 @@ Record both the phase and the answers in the project's `AGENTS.md`:
 
 ```markdown
 ## Project Phase
-- **Current phase**: Discovery (pilot-pm-*) | Delivery (eng-* / pilot-pm-execution) | Growth (growth-pm-*)
+- **Current phase**: Discovery (pilot-pm-*) | Delivery (prd-* / eng-* / pilot-pm-execution) | Growth (growth-pm-*)
 - **Selected on**: <date>
 - **Rationale**: <user's reason>
 
@@ -261,6 +265,8 @@ When the project is in **Delivery** phase, problems are already validated and th
 - `pilot-pm-create-prd` to lock final requirements
 - `pilot-pm-user-stories` or `pilot-pm-job-stories` for backlog items
 - `pilot-pm-test-scenarios` for acceptance criteria and QA cases
+- `prd-product-design` for UI/UX design and design systems before implementation
+- `prd-copywriter` for user-facing product copy before implementation
 - `eng-coding-discipline` for all implementation work
 - `eng-front-end-design` for UI/UX build
 - `eng-deployment` for shipping to production
@@ -292,7 +298,7 @@ Kimi CLI discovers skills relative to the **project root** (nearest `.git` ances
 
 **Current setup:**
 - All `eng-*`, `core-*`, and `full-stack-builder` skills live in `~/.kimi/skills/` (global, available in all projects)
-- PM skills (`pilot-pm-*` and `growth-pm-*`) live in `.agents/skills/` at workspace root (reference manually or copy into projects as needed)
+- PM skills (`pilot-pm-*` and `growth-pm-*`) and pre-engineering product skills (`prd-*`) live in `.agents/skills/` at workspace root (reference manually or copy into projects as needed)
 
 **To use PM skills in a project:**
 1. Copy or symlink specific skills into the project's `.kimi/skills/` folder
@@ -360,6 +366,7 @@ This workspace maintains two representations of the same skills. The Claude plug
   - `pilot-pm-*` — Product management for discovery / 0–100K users
   - `growth-pm-*` — Product management for growth / 100K+ users
   - `eng-*` — Engineering practices and implementation
+  - `prd-*` — Product design, copy, and other pre-engineering product outputs
   - `core-*` — Workspace-wide cross-cutting concerns
 - **Frontmatter**: Every `SKILL.md` must start with:
   ```yaml
@@ -397,7 +404,7 @@ The flat skills in `.agents/skills/` are derived from the Claude plugin skills b
 - If you are asked to edit a skill, check whether the same skill exists in both `.agents/skills/` and `skills/claude/pm-skills/*/skills/`. Apply the same conceptual change to both if appropriate.
 - The root workspace is not a git repository but each project will have its own dedicated git repository.
 - There is no package manager or dependency lock file. Do not attempt to run `npm`, `pip`, `cargo`, etc. at the root.
-- When a user asks for PM help, check the project's `AGENTS.md` for the **Project Phase** before choosing between `pilot-pm-*`, `eng-*`, and `growth-pm-*` skills.
+- When a user asks for PM help, check the project's `AGENTS.md` for the **Project Phase** before choosing between `pilot-pm-*`, `prd-*`, `eng-*`, and `growth-pm-*` skills.
 
 ---
 
