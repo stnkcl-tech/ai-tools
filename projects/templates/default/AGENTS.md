@@ -56,6 +56,7 @@ Root skills are available at `../../../.agents/skills/`.
 ├── AGENTS.md          # This file
 ├── README.md          # Public project description
 ├── .gitignore         # Git ignore rules
+├── bugs/              # Screenshot/capture of any issues reported by users
 ├── references/        # Locked decisions & reference materials (folder committed, contents gitignored)
 ├── research/          # Research notes, drafts, data (gitignored by default)
 └── src/               # Source code (committed)
@@ -64,6 +65,7 @@ Root skills are available at `../../../.agents/skills/`.
 ## Git Policy
 
 - This project is an independent git repository.
+- `bugs/` is gitignored by default. Do not commit it unless the user explicitly says otherwise.
 - `research/` is gitignored by default. Do not commit it unless the user explicitly says otherwise.
 - `references/` contents are gitignored by default, but the folder structure is committed. Only commit contents if the user explicitly says otherwise.
 - Only software code and public documentation should be committed for GitHub publication.
@@ -73,6 +75,6 @@ Root skills are available at `../../../.agents/skills/`.
 - Before making design, product, or engineering decisions, check `references/` for locked decisions.
 - If a decision is not yet in `references/`, treat it as draft and confirm with the user before locking it.
 - When a decision is finalized, move or copy it to `references/` for agents to consult.
-- **Gatekeep implementation**: Do not start writing code, building, shipping, or implementing until the user explicitly says "go build this," "start building," "implement this," or an equivalent explicit go-ahead.
+- **Gatekeep implementation**: Do not start writing code, writing files, building, shipping, or implementing anything until the user explicitly says "Approve", "go build this," "start building," "implement this," or an equivalent explicit go-ahead.
 
 <!-- Add any rules unique to this project below -->
