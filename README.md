@@ -33,7 +33,7 @@ You, if you want to:
 └── README.md           ← Workspace overview
 ```
 
-The PM skills in `.agents/skills/` are based on the open-source `phuryn/pm-skills` repository (https://github.com/phuryn/pm-skills). If you want to maintain the upstream reference for syncing, clone it to a location of your choice outside this workspace.
+The PM skills in `.agents/skills/` are based on the open-source `phuryn/pm-skills` repository (https://github.com/phuryn/pm-skills). You don't need to clone `phuryn/pm-skills` to use this workspace — the PM skills are already included in `.agents/skills/`. Clone the upstream repo only if you plan to sync future updates manually.
 
 ## How projects move through the workspace
 
