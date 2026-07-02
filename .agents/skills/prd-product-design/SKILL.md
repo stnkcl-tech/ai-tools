@@ -101,7 +101,7 @@ Options for visual output:
 - **Mockups**: Higher-fidelity static images or HTML prototypes.
 - **Pilot images**: Generate a visual concept with the workspace script:
   ```bash
-  python3 /Users/thagstn/Documents/ai-tools/scripts/generate-image.py "<detailed visual description>" <project-path>/research/design-concept.png
+  python3 scripts/generate-image.py "<detailed visual description>" <project-path>/research/design-concept.png
   ```
   Show the generated image and get approval before moving to implementation.
 

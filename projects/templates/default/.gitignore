@@ -1,5 +1,6 @@
 # Research & private content
-research/
+research/*
+!research/.gitkeep
 
 #Bugs
 bugs/

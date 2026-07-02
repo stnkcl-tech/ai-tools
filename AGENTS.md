@@ -7,7 +7,7 @@ This is a local personal workspace with a comprehensive skill library for produc
 The workspace contains three main asset groups:
 
 1. **`.agents/skills/`** — A flat collection of skills organized by discipline and lifecycle stage:
-   - **56 `pilot-pm-*` skills** — Product management for discovery, validation, and building toward PMF (0–100K users)
+   - **59 `pilot-pm-*` skills** — Product management for discovery, validation, and building toward PMF (0–100K users)
    - **9 `growth-pm-*` skills** — Product management for scaling, optimization, and expansion (100K+ users)
    - **21 `eng-*` skills** — Engineering practices from coding discipline to deployment, monitoring, and performance
    - **2 `prd-*` skills** — Product design, copy, and other pre-engineering product outputs
@@ -15,7 +15,7 @@ The workspace contains three main asset groups:
    - **1 `full-stack-builder` flow** — Orchestrated end-to-end feature development from PRD to shipped code
    - **3 additional product/orchestration skills** — `new-project`, `product-discovery`, `prototype-builder`
 
-2. **`skills/claude/pm-skills/`** — A full git clone of the open-source `phuryn/pm-skills` repository (https://github.com/phuryn/pm-skills). This is a Claude Code plugin marketplace that packages the PM skills into 8 installable plugins, plus 36 slash-commands that chain skills into end-to-end workflows. This folder is kept as the upstream source of truth. Changes here are synced into `.agents/skills/` via a manual process documented in the **Skills Maintenance Workflow** section below.
+2. **`phuryn/pm-skills`** — The open-source upstream source for the PM skills (https://github.com/phuryn/pm-skills). It is a Claude Code plugin marketplace that packages the PM skills into installable plugins plus slash-commands that chain skills into end-to-end workflows. If you maintain the upstream reference for syncing, clone it to a location of your choice outside this workspace.
 
 3. **`projects/`** — Active workspace for experiments and shipped products.
 
@@ -113,40 +113,24 @@ For non-trivial work:
 ```
 .
 ├── .agents/
-│   └── skills/                          # 93 flat skill directories (agent-agnostic)
+│   └── skills/                          # 96 flat skill directories (agent-agnostic)
 │       ├── pilot-pm-create-prd/SKILL.md
 │       ├── pilot-pm-user-stories/SKILL.md
 │       ├── eng-coding-discipline/SKILL.md
 │       ├── eng-api-design/SKILL.md
 │       ├── full-stack-builder/SKILL.md
 │       └── ... (83 more skills)
-├── configs/                             # Empty placeholder
-├── docs/                                # Empty placeholder
 ├── projects/                            # Project workspace
 │   ├── active/                          # Graduated, ongoing projects
+│   ├── archive/                         # Stopped or killed experiments
+│   ├── bugs/                            # Workspace-level bug records when needed
 │   ├── experiments/                     # New, unvalidated ideas
 │   └── templates/                       # Scaffolding templates
 ├── scripts/                             # Workspace utilities
 │   └── generate-image.py               # Pilot image generation for UI design
-└── skills/
-    ├── claude/
-    │   └── pm-skills/                   # Git clone of phuryn/pm-skills
-    │       ├── .claude-plugin/
-    │       │   ├── marketplace.json     # Marketplace manifest (8 plugins)
-    │       │   └── plugin.json          # Per-plugin manifests
-    │       ├── pm-product-discovery/    # Plugin: ideation, experiments, OSTs
-    │       ├── pm-product-strategy/     # Plugin: vision, business models, pricing
-    │       ├── pm-execution/            # Plugin: PRDs, OKRs, sprints, stories
-    │       ├── pm-market-research/      # Plugin: personas, journey maps, sizing
-    │       ├── pm-data-analytics/       # Plugin: SQL, cohorts, A/B tests
-    │       ├── pm-go-to-market/         # Plugin: GTM strategy, battlecards
-    │       ├── pm-marketing-growth/     # Plugin: positioning, North Star
-    │       ├── pm-toolkit/              # Plugin: resume, NDA, proofreading
-    │       ├── validate_plugins.py      # Plugin validation script (Claude-only)
-    │       ├── README.md
-    │       ├── CONTRIBUTING.md
-    │       └── LICENSE
-    └── kimi/                            # Empty placeholder
+└── README.md                            # Workspace overview
+
+The PM skills in `.agents/skills/` are based on the open-source `phuryn/pm-skills` repository (https://github.com/phuryn/pm-skills). If you maintain the upstream reference for syncing, clone it to a location of your choice outside this workspace.
 ```
 
 ---
@@ -161,6 +145,7 @@ For non-trivial work:
 | `projects/active/` | Projects that have graduated from experiments and are under active development. |
 | `projects/templates/` | Scaffolding templates for bootstrapping new projects. |
 | `projects/archive/` | Stopped or killed experiments. Moved here when an idea is no longer pursued. |
+| `projects/bugs/` | Workspace-level bug records. Used when a central bug log is needed across projects. |
 
 ## Project Phase Selection (Required at Initiation)
 
@@ -239,7 +224,7 @@ projects/experiments/<project-name>/
 
 ## Git Policy
 
-- **One project = one repository**. The root workspace is not a git repo.
+- **One project = one repository**. The workspace root is a git repository that tracks shared structure, skills, and templates.
 - **Research is private by default**. The `research/` directory is gitignored. Only commit it if the user explicitly requests it.
 - **Software is public by default**. Code in `src/` and documentation in `README.md` are intended for public GitHub repos unless the user says otherwise.
 
@@ -339,7 +324,7 @@ The detailed research and raw notes should stay in the project's `research/` fol
 
 # Skills Maintenance Workflow
 
-This workspace maintains two representations of the same skills. The Claude plugin repo (`skills/claude/pm-skills/`) is the upstream source, and `.agents/skills/` is the vendor-agnostic downstream copy.
+This workspace utilizes two representations of the same skills. The publicly available `phuryn/pm-skills` as the upstream source, and `.agents/skills/` as the vendor-agnostic downstream copy.
 
 ## When to Sync
 
@@ -349,7 +334,7 @@ This workspace maintains two representations of the same skills. The Claude plug
 
 ## Sync Process (Manual)
 
-1. **Identify changes** — Compare `skills/claude/pm-skills/*/skills/<skill-name>/SKILL.md` against `.agents/skills/<skill-name>/SKILL.md`
+1. **Identify changes** — Compare `<path-to-your-pm-skills-clone>/*/skills/<skill-name>/SKILL.md` against `.agents/skills/<skill-name>/SKILL.md`
 2. **Copy and adapt** — Copy the updated Claude skill into `.agents/skills/<skill-name>/SKILL.md`
 3. **Apply vendor-agnostic substitution** — Replace `$ARGUMENTS` with `the user's request` (or equivalent phrasing suitable for the target model)
 4. **Manual review** — Check frontmatter consistency, description quality, and word count
@@ -401,8 +386,8 @@ The flat skills in `.agents/skills/` are derived from the Claude plugin skills b
 
 # Notes for AI Agents
 
-- If you are asked to edit a skill, check whether the same skill exists in both `.agents/skills/` and `skills/claude/pm-skills/*/skills/`. Apply the same conceptual change to both if appropriate.
-- The root workspace is not a git repository but each project will have its own dedicated git repository.
+- If you are asked to edit a skill, check whether the same skill exists in both `.agents/skills/` and your local clone of `phuryn/pm-skills` (`<path-to-your-pm-skills-clone>/*/skills/`). Apply the same conceptual change to both if appropriate.
+- The workspace root is a git repository that tracks shared structure, skills, and templates; each project also has its own dedicated git repository.
 - There is no package manager or dependency lock file. Do not attempt to run `npm`, `pip`, `cargo`, etc. at the root.
 - When a user asks for PM help, check the project's `AGENTS.md` for the **Project Phase** before choosing between `pilot-pm-*`, `prd-*`, `eng-*`, and `growth-pm-*` skills.
 
@@ -420,7 +405,7 @@ The flat skills in `.agents/skills/` are derived from the Claude plugin skills b
 # Security Considerations
 
 - This repository contains only documentation, prompts, and structured markdown. There are no secrets, credentials, or executable build artifacts.
-- The validation script (`validate_plugins.py` inside `skills/claude/pm-skills/`) only reads files and prints to stdout. It is specific to the Claude plugin structure and not used for `.agents/skills/`.
+- The validation script (`validate_plugins.py` inside your local clone of `phuryn/pm-skills`) only reads files and prints to stdout. It is specific to the Claude plugin structure and not used for `.agents/skills/`.
 - Do not commit sensitive data into skill files or manifests.
 - Before destructive or high-impact actions (`rm -rf`, dropping databases, production deploys, irreversible data migration, or changing secrets and credentials): obtain explicit user confirmation when the environment allows; do not proceed on assumption.
 - Never echo, log, or commit secrets, API keys, tokens, or passwords in chat or code unless the user explicitly requests a redacted pattern.

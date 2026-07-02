@@ -78,7 +78,7 @@ After capturing all three, summarize back to the user and ask:
 Run these commands:
 
 ```bash
-cd /Users/thagstn/Documents/ai-tools
+cd <workspace-root>
 cp -r projects/templates/default projects/experiments/<project-name>
 cd projects/experiments/<project-name>
 git init

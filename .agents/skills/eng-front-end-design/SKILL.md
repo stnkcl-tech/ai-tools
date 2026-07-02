@@ -27,7 +27,7 @@ Before coding, understand the context and commit to the user's aesthetic directi
 
 **Generate a pilot image** before writing code. Use the workspace script:
 ```bash
-python3 /Users/thagstn/Documents/ai-tools/scripts/generate-image.py "<detailed visual description of the design>" <project-path>/research/pilot.png
+python3 scripts/generate-image.py "<detailed visual description of the design>" <project-path>/research/pilot.png
 ```
 Show the generated image to the user and get approval before proceeding to implementation.
 

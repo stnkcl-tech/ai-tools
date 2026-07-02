@@ -29,9 +29,6 @@ build/
 research/
 projects/bugs/
 
-# ── Upstream plugin repo (managed separately) ──────────────
-skills/claude/pm-skills/
-
 # ── Individual project repositories ────────────────────────
 # Each project under active/experiments/archive is its own git repo.
 # Root workspace tracks only the shared structure and templates.

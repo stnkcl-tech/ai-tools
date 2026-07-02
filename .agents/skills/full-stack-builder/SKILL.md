@@ -85,7 +85,7 @@ Output: A working schema and stubbed API routes (returning static data).
 1. Read the PRD's UI requirements and the project's design context
 2. Use the workspace image generation script:
    ```bash
-   python3 /Users/thagstn/Documents/ai-tools/scripts/generate-image.py "<detailed visual description>" <project-path>/research/pilot.png
+   python3 scripts/generate-image.py "<detailed visual description>" <project-path>/research/pilot.png
    ```
 3. **STOP.** Show the generated image to the user. Wait for explicit approval before writing frontend code.
 

@@ -23,16 +23,17 @@ You, if you want to:
 ```
 .
 ├── .agents/skills/     ← Reusable guides for product and engineering work
-├── configs/            ← Settings for different AI tools (Claude, Kimi, VS Code)
-├── docs/               ← Cheatsheets, guides, and notes
 ├── projects/           ← Where the work happens
 │   ├── active/         ← Projects being actively built
 │   ├── archive/        ← Stopped or killed experiments
+│   ├── bugs/           ← Workspace-level bug records when needed
 │   ├── experiments/    ← New, unvalidated ideas
 │   └── templates/      ← Starter template for new projects
 ├── scripts/            ← Small helper scripts
-└── skills/             ← Agent-specific plugins
+└── README.md           ← Workspace overview
 ```
+
+The PM skills in `.agents/skills/` are based on the open-source `phuryn/pm-skills` repository (https://github.com/phuryn/pm-skills). If you want to maintain the upstream reference for syncing, clone it to a location of your choice outside this workspace.
 
 ## How projects move through the workspace
 
@@ -46,7 +47,7 @@ experiments/ → active/ → (its own git repo) → archive/
      - What problem will this solve?
      - Who has this problem?
      - What solutions do they use today?
-   - Choose a phase: **Discovery** (finding product-market fit) or **Growth** (scaling something that works).
+   - Choose a phase: **Discovery** (finding product-market fit), **Delivery** (problems validated, moving into build/execution), or **Growth** (scaling something that works).
 
 2. **Validate before building**
    - Run small experiments.
@@ -82,7 +83,7 @@ These skills are reference material. Agents use them to stay consistent across p
    ```
 
 2. **Fill out `AGENTS.md`**
-   - Pick Discovery or Growth.
+   - Pick Discovery, Delivery, or Growth.
    - Answer the three key questions.
 
 3. **Decide what to do next**
